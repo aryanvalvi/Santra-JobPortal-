@@ -1,0 +1,167 @@
+.jobsflexbox {
+  display: flex;
+  color: white;
+  font-family: "Inria Sans", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  // font-size: 24px;
+}
+.SeachHome {
+  display: flex;
+  justify-content: center;
+}
+
+.jobs {
+  cursor: pointer;
+  width: auto;
+  margin-top: 50px;
+  margin-left: 50px;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 40px;
+}
+.selected {
+  background-color: #8d8d8d;
+  transform: scale(1.03);
+  transition: transform 0.3s ease-in-out;
+}
+.leftJobs {
+  max-height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+  scrollbar-width: none;
+  margin-left: 30px;
+  margin-top: 50px;
+}
+.title {
+  font-size: 27px;
+  font-weight: 800;
+  font-style: bold;
+}
+.jobs:hover {
+  .title {
+    text-decoration: underline;
+  }
+}
+.address {
+  margin-top: 20px;
+  font-size: 18px;
+}
+.shift {
+  font-size: 20px;
+  border-radius: 5px;
+  font-weight: 800;
+  padding: 3px;
+  background-color: rgb(255, 255, 255);
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  margin-right: 5px;
+}
+.SalaryRange {
+  font-size: 20px;
+  border-radius: 5px;
+  font-weight: 800;
+  padding: 3px;
+  background-color: rgb(255, 255, 255);
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  margin-right: 5px;
+}
+.SkillRequired {
+  font-size: 20px;
+  border-radius: 5px;
+  font-weight: 800;
+  padding: 3px;
+  background-color: rgb(255, 255, 255);
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  margin-right: 5px;
+}
+.Responsibilities {
+  margin-left: -3px;
+}
+.jobsflexbox {
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  // text-align: center;
+}
+.rightBigJob2 {
+  min-width: 500px;
+  border: 1px solid white;
+  margin-top: 100px;
+  margin-left: 30px;
+  padding: 20px;
+  border-radius: 4px;
+  .address {
+    text-decoration: underline;
+  }
+  .SalaryRange {
+    margin-top: 10px;
+  }
+  .btn2 {
+    margin-top: 5px;
+    background-color: #ffe600;
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+    padding: 5px;
+    border-radius: 3px;
+  }
+}
+.buttonwithBookMark {
+  position: relative;
+}
+.svj {
+  top: 7%;
+  position: absolute;
+  // margin-top: 40px;
+  padding: 6px;
+  background-color: rgb(203, 203, 203);
+}
+.moreDetail {
+  margin-left: 30px;
+  padding: 20px;
+
+  border: 1px solid white;
+  max-width: 630px;
+
+  min-width: 500px;
+  h1 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 20px;
+  }
+  .SkillRequired {
+    font-size: 18px;
+  }
+}
+.skillIcon {
+  display: flex;
+  p {
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+}
+
+.SkillRequired2 {
+  margin-top: 10px;
+  border-radius: 3px;
+  padding: 3px;
+  display: inline-block;
+  background-color: azure;
+  color: black;
+  font-size: 18px;
+}
+.EducationIcon {
+  display: flex;
+  p {
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+}
+.homeJobs {
+  // max-width: 00px;
+}

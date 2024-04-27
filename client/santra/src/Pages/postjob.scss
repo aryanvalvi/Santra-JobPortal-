@@ -1,0 +1,81 @@
+.postJob {
+  color: white;
+}
+// role
+// addres
+// company name
+// responsibilities
+// time
+.PostJobdetail {
+  padding: 50px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(255, 255, 255);
+  background-color: #343a40;
+}
+.postjobinput {
+  width: 500px;
+  padding: 7px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.salaray {
+  display: flex;
+}
+.salaryrange {
+  display: flex;
+}
+.postjobinput1 {
+  width: 200px;
+  padding: 7px;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.SkillRequired {
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+.btn2 {
+  padding: 3px;
+  font-size: 18px;
+}
+
+.skill {
+  border: 1px solid rgb(0, 0, 0);
+  max-width: 400px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.skills {
+  max-width: 200px;
+  border-radius: 10px;
+  padding: 5px;
+}
+.skills:hover {
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
+}
+.Responsibilities {
+  width: 500px;
+  font-size: 17px;
+
+  border-radius: 10px;
+  padding: 5px;
+}
+.postJob {
+  h1 {
+    font-size: 20px;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // max-width: 500px;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  color: #343a40;
+}

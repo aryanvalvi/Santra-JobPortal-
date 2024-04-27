@@ -1,12 +1,34 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 const route = require("./Routes/route");
+const passport = require("passport");
+const session = require("express-session");
+const passportConfig = require("./Passport/passport");
+//expres session
+app.use(
+  session({
+    secret: "abc",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //middleare
 app.use(express.json());
-
 //databse connection
 const db = () => {
   mongoose
