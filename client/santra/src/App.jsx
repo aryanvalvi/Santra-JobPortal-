@@ -13,6 +13,7 @@ import PostJob from "./Pages/PostJob";
 import PostedJob from "./Pages/PostedJob";
 import Resume from "./Pages/Resume";
 import ResumeDetail from "./Pages/ResumeDetail";
+import Experince from "./Pages/Experince";
 const App = () => {
   const [user, setUser] = useState(null);
 
@@ -64,6 +65,7 @@ const App = () => {
             <Route path="/example" element={<Example></Example>}></Route>
             <Route path="jobs/Resume/:id" element={<Resume></Resume>}></Route>
             <Route path="a" element={<ResumeDetail></ResumeDetail>}></Route>
+            <Route path="b" element={<Experince></Experince>}></Route>
           </Routes>
         </Router>
       }

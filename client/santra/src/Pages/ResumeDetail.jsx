@@ -3,6 +3,7 @@ import "./ResumeDetail.scss";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import skills from "./skill.json";
+import axios from "axios";
 const Language = [
   "English",
   "Hindi",
@@ -19,6 +20,7 @@ const Language = [
 ];
 
 const ResumeDetail = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [selectedLanguage, setSelectedLanuage] = useState([]);
@@ -45,9 +47,32 @@ const ResumeDetail = () => {
     setLanguage([...languge, lan]);
   };
 
-  const HandleClickExperience = () => {
-    seteExperience([...eexperience, ""]);
+  const [Add, setAdd] = useState(false);
+  const [Addref, setAddref] = useState(false);
+  const Handlesubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    // Add the new experience to the eexperience array
+    const allFieldsFilled = Object.keys(eexperience).every((key) => {
+      return eexperience[key].trim() !== "";
+    });
+
+    if (allFieldsFilled) {
+      setExistingData([...existingData, eexperience]);
+      // Clear the input fields after submission
+      seteExperience({
+        date: "",
+        company: "",
+        address: "",
+        position: "",
+      });
+      setAdd(true);
+    } else {
+      alert("Please enter a value");
+    }
   };
+  const [existingData, setExistingData] = useState([]);
+
   const [Header, Setheader] = useState({
     name: "Mariana Anderson",
     post: "Marketing Manager",
@@ -97,14 +122,13 @@ const ResumeDetail = () => {
       position: "Job position here",
     },
   ]);
-  const [eexperience, seteExperience] = useState([
-    {
-      date: "2019 - 2022",
-      company: "Company Name",
-      address: "123 Anywhere St., Any City",
-      position: "Job position here",
-    },
-  ]);
+  const [eexperience, seteExperience] = useState({
+    date: "",
+    company: "",
+    address: "",
+    position: "",
+  });
+
   const [references, setReferences] = useState([
     {
       name: "Name Surname",
@@ -121,6 +145,64 @@ const ResumeDetail = () => {
       email: "hello@reallygreatsite.com",
     },
   ]);
+
+  const HandleReferenceSubmit = (e) => {
+    e.preventDefault();
+    const allFieldsFilled = Object.keys(rreferences).every((key) => {
+      return rreferences[key].trim() !== "";
+    });
+    if (allFieldsFilled) {
+      setExistingRefrencedata([...existingRefrencedata, rreferences]);
+      setrReferences({
+        name: "",
+        position: "",
+        company: "",
+        phone: "",
+        email: "",
+      });
+      setAddref(true);
+    } else {
+      alert("Please enter a value");
+    }
+  };
+  const [rreferences, setrReferences] = useState({
+    name: "",
+    position: "",
+    company: "",
+    phone: "",
+    email: "",
+  });
+  const [existingRefrencedata, setExistingRefrencedata] = useState([]);
+  const HandlePhotUpload = () => {
+    console.log(selectedFile);
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    axios
+      .post("http://localhost:5000/uploads", formData)
+      .then((res) => console.log(res, formData))
+      .catch((err) => console.log(err));
+    // try {
+    //   fetch("http://localhost:5000/uploads", {
+    //     method: "POST",
+    //     credentials: "include",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Credentials": true,
+    //     },
+    //     body: JSON.stringify(formData),
+    //   }).then((res) => {
+    //     if (res.ok) {
+    //       console.log("image Uploaded");
+    //     } else {
+    //       console.log("image not Uploaded");
+    //     }
+    //   });
+    // } catch (error) {
+    //   console.log("Error while Uploading", error);
+    // }
+  };
   return (
     <div className="home">
       <Navbar></Navbar>
@@ -231,54 +313,117 @@ const ResumeDetail = () => {
           </div>
           <div className="Experience PersonalInfo">
             <p className="unique">Experience</p>
-            <p>Date</p>
-            <input
-              type="Date"
-              onChange={(e) =>
-                seteExperience((prev) => [{ ...prev[0], date: e.target.value }])
-              }
-            />
-            <p>Company</p>
-            <input
-              type="text"
-              onChange={(e) =>
-                seteExperience((prev) => [
-                  { ...prev[0], company: e.target.value },
-                ])
-              }
-            />
-            <p>Address</p>
-            <input
-              type="text"
-              onChange={(e) =>
-                seteExperience((prev) => [
-                  { ...prev[0], address: e.target.value },
-                ])
-              }
-            />
-            <p>Position</p>
-            <input
-              type="text"
-              onChange={(e) =>
-                seteExperience((prev) => [
-                  { ...prev[0], position: e.target.value },
-                ])
-              }
-            />
-            <button onClick={() => HandleClickExperience()}>Add</button>
+            <form onSubmit={Handlesubmit}>
+              <p>Date</p>
+              <input
+                value={eexperience.date}
+                type="Date"
+                onChange={(e) =>
+                  seteExperience((prev) => ({
+                    ...prev,
+                    date: e.target.value,
+                  }))
+                }
+              />
+              <p>Company</p>
+              <input
+                value={eexperience.company}
+                type="text"
+                onChange={(e) =>
+                  seteExperience((prev) => ({
+                    ...prev,
+                    company: e.target.value,
+                  }))
+                }
+              />
+              <p>Address</p>
+              <input
+                value={eexperience.address}
+                type="text"
+                onChange={(e) =>
+                  seteExperience((prev) => ({
+                    ...prev,
+                    address: e.target.value,
+                  }))
+                }
+              />
+              <p>Position</p>
+              <input
+                value={eexperience.position}
+                type="text"
+                onChange={(e) =>
+                  seteExperience((prev) => ({
+                    ...prev,
+                    position: e.target.value,
+                  }))
+                }
+              />
+              <button type="submit">Add</button>
+            </form>
           </div>
           <div className="PersonalInfo">
             <p className="unique">Reference</p>
-            <p>Company Name</p>
-            <input type="text" onChange={(e) => SetName(e.target.value)} />
-            <p>position</p>
-            <input type="text" onChange={(e) => SetName(e.target.value)} />
-            <p>company</p>
-            <input type="text" onChange={(e) => SetName(e.target.value)} />
-            <p>phone</p>
-            <input type="text" onChange={(e) => SetName(e.target.value)} />
-            <p>email</p>
-            <input type="text" onChange={(e) => SetName(e.target.value)} />
+            <form onSubmit={HandleReferenceSubmit}>
+              <p> Name</p>
+              <input
+                value={rreferences.name}
+                type="text"
+                onChange={(e) =>
+                  setrReferences((prev) => ({ ...prev, name: e.target.value }))
+                }
+              />
+              <p>position</p>
+              <input
+                value={rreferences.position}
+                type="text"
+                onChange={(e) =>
+                  setrReferences((prev) => ({
+                    ...prev,
+                    position: e.target.value,
+                  }))
+                }
+              />
+
+              <p>company</p>
+              <input
+                value={rreferences.company}
+                type="text"
+                onChange={(e) =>
+                  setrReferences((prev) => ({
+                    ...prev,
+                    company: e.target.value,
+                  }))
+                }
+              />
+
+              <p>phone</p>
+              <input
+                value={rreferences.phone}
+                type="text"
+                onChange={(e) =>
+                  setrReferences((prev) => ({ ...prev, phone: e.target.value }))
+                }
+              />
+
+              <p>email</p>
+              <input
+                value={rreferences.email}
+                type="text"
+                onChange={(e) =>
+                  setrReferences((prev) => ({ ...prev, email: e.target.value }))
+                }
+              />
+              <button type="submit">Add</button>
+            </form>
+          </div>
+          <div className="imageUpload">
+            <input
+              type="file"
+              onChange={(e) => setSelectedFile(e.target.value)}
+              name="image"
+              id=""
+            />
+            <button onClick={HandlePhotUpload}>Upload</button>
           </div>
         </div>
 
@@ -353,38 +498,89 @@ const ResumeDetail = () => {
               </div>
               <div className="experience">
                 <h2>Experience</h2>
-                {eexperience.map((item, index) => (
-                  <div key={index} className="experience-item">
-                    <h3>{item.date}</h3>
-                    <p>
-                      <strong>
-                        {item.company} | {item.address}
-                      </strong>
-                    </p>
-                    <p>{item.position}</p>
-                  </div>
-                ))}
-                <button>Add</button>
+                {Add
+                  ? existingData.map((e, index) => (
+                      <div key={index} className="experience-item">
+                        <h3>{e.date}</h3>
+                        <p>
+                          <strong>
+                            {e.company} | {e.address}
+                          </strong>
+                        </p>
+                        <p>{e.position}</p>
+                      </div>
+                    ))
+                  : experience.map((item, index) => (
+                      <div key={index} className="experience-item">
+                        <h3>{item.date}</h3>
+                        <p>
+                          <strong>
+                            {item.company} | {item.address}
+                          </strong>
+                        </p>
+                        <p>{item.position}</p>
+                      </div>
+                    ))}
+                {/* {eexperience.length > 0
+                  ? eexperience.map((e, index) => (
+                      <div key={index} className="experience-item">
+                        <h3>{e.date}</h3>
+                        <p>
+                          <strong>
+                            {e.company} | {e.address}
+                          </strong>
+                        </p>
+                        <p>{e.position}</p>
+                      </div>
+                    ))
+                  : experience.map((item, index) => (
+                      <div key={index} className="experience-item">
+                        <h3>{item.date}</h3>
+                        <p>
+                          <strong>
+                            {item.company} | {item.address}
+                          </strong>
+                        </p>
+                        <p>{item.position}</p>
+                      </div>
+                    ))} */}
               </div>
 
               <div className="reference">
                 <h2>Reference</h2>
-                {references.map((item, index) => (
-                  <div key={index} className="reference-item">
-                    <p>
-                      <strong>{item.name}</strong>
-                    </p>
-                    <p>
-                      {item.position}, {item.company}
-                    </p>
-                    <p>
-                      <strong>Phone:</strong> {item.phone}
-                    </p>
-                    <p>
-                      <strong>Email:</strong> {item.email}
-                    </p>
-                  </div>
-                ))}
+                {!Addref
+                  ? references.map((item, index) => (
+                      <div key={index} className="reference-item">
+                        <p>
+                          <strong>{item.name}</strong>
+                        </p>
+                        <p>
+                          {item.position}, {item.company}
+                        </p>
+                        <p>
+                          <strong>Phone:</strong> {item.phone}
+                        </p>
+                        <p>
+                          <strong>Email:</strong> {item.email}
+                        </p>
+                      </div>
+                    ))
+                  : existingRefrencedata.map((item, index) => (
+                      <div key={index} className="reference-item">
+                        <p>
+                          <strong>{item.name}</strong>
+                        </p>
+                        <p>
+                          {item.position}, {item.company}
+                        </p>
+                        <p>
+                          <strong>Phone:</strong> {item.phone}
+                        </p>
+                        <p>
+                          <strong>Email:</strong> {item.email}
+                        </p>
+                      </div>
+                    ))}
               </div>
             </div>
           </div>

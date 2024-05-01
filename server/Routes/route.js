@@ -1,4 +1,6 @@
 const express = require("express");
+const multer = require("multer");
+
 const router = express.Router();
 const passport = require("passport");
 const {
@@ -9,6 +11,7 @@ const {
   PostedJob,
   redirectToHome,
 } = require("../controllers/post");
+const { UserImgage, upload } = require("../controllers/UserImage");
 // const { isAuthenticated, isganduOn } = require("../controllers/googleAuth");
 //Routes
 
@@ -58,4 +61,9 @@ router.get(
 // });
 
 router.post("/abc", abc);
+
+router.post("/uploads", upload.single("file"), (req, res) => {
+  res.json({ message: "file uploaded" });
+  console.log(req.file);
+});
 module.exports = router;
