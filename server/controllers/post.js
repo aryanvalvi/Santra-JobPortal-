@@ -1,4 +1,4 @@
-const Jobpost = require("../models/PostJobSchema");
+const { Jobpost } = require("../models/PostJobSchema");
 const passport = require("passport");
 
 let userIdBc;

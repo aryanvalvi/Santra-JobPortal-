@@ -3,6 +3,7 @@ const multer = require("multer");
 
 const router = express.Router();
 const passport = require("passport");
+const ConvertToWord = require("../controllers/Converter");
 const {
   postJob,
   GetJob,
@@ -11,7 +12,7 @@ const {
   PostedJob,
   redirectToHome,
 } = require("../controllers/post");
-const { UserImgage, upload } = require("../controllers/UserImage");
+const { GetImage, UserImage } = require("../controllers/UserImage");
 // const { isAuthenticated, isganduOn } = require("../controllers/googleAuth");
 //Routes
 
@@ -62,8 +63,13 @@ router.get(
 
 router.post("/abc", abc);
 
-router.post("/uploads", upload.single("file"), (req, res) => {
-  res.json({ message: "file uploaded" });
-  console.log(req.file);
+router.post("/uploads", UserImage);
+router.get("/abcd", async (req, res) => {
+  const googleId = await req.user.id;
+  res.send(googleId);
+  console.log(req.user.id);
 });
+
+router.get("/get-image", GetImage);
 module.exports = router;
+router.post("/convertword", ConvertToWord);

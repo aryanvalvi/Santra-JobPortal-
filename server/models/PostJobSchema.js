@@ -72,5 +72,21 @@ const Schma1 = new mongoose.Schema(
   }
 );
 
+const Schema2 = new mongoose.Schema({
+  userName: {
+    type: String,
+    required: true,
+  },
+  UserId: {
+    type: String,
+    required: true,
+  },
+  ImageName: {
+    type: String,
+    required: true,
+  },
+});
+
 const Jobpost = mongoose.model("JobPostOp", Schma1);
-module.exports = Jobpost;
+const ImagePost = mongoose.model("ImagePost", Schema2);
+module.exports = { Jobpost, ImagePost };

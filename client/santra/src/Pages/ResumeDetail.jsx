@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./ResumeDetail.scss";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import skills from "./skill.json";
 import axios from "axios";
+import { saveAs } from "file-saver";
+
 const Language = [
   "English",
   "Hindi",
@@ -18,14 +20,82 @@ const Language = [
   "Punjabi",
   "Malayalam",
 ];
-
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 const ResumeDetail = () => {
+  const [imageUploaded, setImageUploaded] = useState(null);
+  const [googleId, setGoogleId] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [selectedLanguage, setSelectedLanuage] = useState([]);
   const [inputValuelan, setInputValuelan] = useState("");
 
+  const downloadPdf = () => {
+    const capture = document.querySelector(".resume");
+
+    html2canvas(capture, { scale: 2 }).then((canvas) => {
+      const imgdata = canvas.toDataURL("img/png");
+      const doc = new jsPDF({
+        orientationL: "portrait",
+        unit: "mm",
+        format: [210, 297],
+      });
+      const componentWidth = doc.internal.pageSize.getWidth();
+      const componentHeight = doc.internal.pageSize.getHeight();
+      doc.addImage(imgdata, "PNG", 0, 0, componentWidth, componentHeight);
+
+      doc.save("RESUME.pdf");
+    });
+  };
+  useEffect(() => {
+    const isAuth = async () => {
+      fetch("http://localhost:5000/isAuth", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            return res.json();
+          }
+        })
+        .then((resObj) => {
+          console.log(resObj);
+          setGoogleId(resObj.user.id);
+        });
+    };
+    isAuth();
+  }, []);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      if (googleId) {
+        try {
+          const res = await axios.get(`http://localhost:5000/${googleId}.jpg`, {
+            responseType: "arraybuffer",
+          });
+
+          const blob = new Blob([response.data], { type: "image/jpeg" });
+          const imageUrl = URL.createObjectURL(blob);
+          setImageSrc(imageUrl);
+        } catch (error) {
+          console.error("error fetching", error);
+        }
+      }
+    };
+    fetchImage();
+    return () => {
+      if (imageSrc) {
+        URL.revokeObjectURL(imageSrc);
+      }
+    };
+  }, [googleId]);
   const filteredSkills = skills.filter(
     (skill) => skill.toLowerCase().includes(inputValue.toLowerCase())
     // skills.includes(inputValue)
@@ -176,32 +246,49 @@ const ResumeDetail = () => {
   const HandlePhotUpload = () => {
     console.log(selectedFile);
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("image", selectedFile);
 
-    axios
-      .post("http://localhost:5000/uploads", formData)
-      .then((res) => console.log(res, formData))
-      .catch((err) => console.log(err));
-    // try {
-    //   fetch("http://localhost:5000/uploads", {
-    //     method: "POST",
-    //     credentials: "include",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //       "Access-Control-Allow-Credentials": true,
-    //     },
-    //     body: JSON.stringify(formData),
-    //   }).then((res) => {
-    //     if (res.ok) {
-    //       console.log("image Uploaded");
-    //     } else {
-    //       console.log("image not Uploaded");
-    //     }
-    //   });
-    // } catch (error) {
-    //   console.log("Error while Uploading", error);
-    // }
+    fetch("http://localhost:5000/uploads", {
+      method: "POST",
+      credentials: "include",
+      // headers: {
+      //   Accept: "application/json",
+      //   // "Content-Type": "application/json",
+      //   // "Access-Control-Allow-Credentials": true,
+      // },
+      body: formData,
+    })
+      .then(
+        (res) => console.log(res.data.message),
+        setTimeout(() => {
+          getImage(); // Fetch and display the image
+        }, 1000)
+      )
+      .catch((err) => console.log("error while uploding", err));
+  };
+
+  // useEffect(() => {
+  //   getImage();
+  // }, [imageUploaded]);
+  const getImage = async () => {
+    fetch("http://localhost:5000/get-image", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+      })
+      .then((resObj) => {
+        console.log(resObj[0].toString());
+        setImageUploaded(resObj[0].toString());
+      });
   };
   return (
     <div className="home">
@@ -419,8 +506,7 @@ const ResumeDetail = () => {
           <div className="imageUpload">
             <input
               type="file"
-              onChange={(e) => setSelectedFile(e.target.value)}
-              name="image"
+              onChange={(e) => setSelectedFile(e.target.files[0])}
               id=""
             />
             <button onClick={HandlePhotUpload}>Upload</button>
@@ -431,7 +517,21 @@ const ResumeDetail = () => {
           <div className="FlexResume">
             <div className="leftResume">
               <div className="profile-picture">
-                <img src="/female.jpg" alt="Profile Picture" />
+                {!imageUploaded ? (
+                  <img
+                    className="imgupload"
+                    src="/female.jpg"
+                    alt="Profile Picture"
+                  />
+                ) : (
+                  <img
+                    className="imgupload"
+                    src={`./images/${imageUploaded}`}
+                    height={100}
+                    width={100}
+                    alt="img"
+                  />
+                )}
               </div>
               <div className="contact">
                 <h2>Contact</h2>
@@ -440,7 +540,10 @@ const ResumeDetail = () => {
                     <strong>Phone:</strong> <br /> {PersonalInfo.number}
                   </li>
                   <li>
-                    <strong>Email:</strong> <br /> {PersonalInfo.email}
+                    <strong>Email:</strong> <br />
+                    <a href={`mailto:${PersonalInfo.email}`}>
+                      {PersonalInfo.email}
+                    </a>
                   </li>
                   <li>
                     <strong>Address:</strong> <br /> {PersonalInfo.address}
@@ -490,6 +593,8 @@ const ResumeDetail = () => {
                 </ul>
               </div>
             </div>
+
+            {/* Right Infor */}
             <div className="RightResume">
               <div className="personal-info">
                 <h1>{Header.name}</h1>
@@ -521,29 +626,6 @@ const ResumeDetail = () => {
                         <p>{item.position}</p>
                       </div>
                     ))}
-                {/* {eexperience.length > 0
-                  ? eexperience.map((e, index) => (
-                      <div key={index} className="experience-item">
-                        <h3>{e.date}</h3>
-                        <p>
-                          <strong>
-                            {e.company} | {e.address}
-                          </strong>
-                        </p>
-                        <p>{e.position}</p>
-                      </div>
-                    ))
-                  : experience.map((item, index) => (
-                      <div key={index} className="experience-item">
-                        <h3>{item.date}</h3>
-                        <p>
-                          <strong>
-                            {item.company} | {item.address}
-                          </strong>
-                        </p>
-                        <p>{item.position}</p>
-                      </div>
-                    ))} */}
               </div>
 
               <div className="reference">
@@ -586,6 +668,12 @@ const ResumeDetail = () => {
           </div>
         </div>
       </div>
+      {imageSrc ? (
+        <img src={imageSrc} alt="User" />
+      ) : (
+        <div>Loading image...</div>
+      )}
+      <button onClick={downloadPdf}>Convert to PDF</button>
       <Footer></Footer>
     </div>
   );

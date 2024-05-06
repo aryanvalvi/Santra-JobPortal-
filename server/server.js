@@ -7,6 +7,7 @@ const route = require("./Routes/route");
 const passport = require("passport");
 const session = require("express-session");
 const passportConfig = require("./Passport/passport");
+const bodyParser = require("body-parser");
 //expres session
 app.use(
   session({
@@ -26,7 +27,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 //middleare
 app.use(express.json());
 //databse connection
