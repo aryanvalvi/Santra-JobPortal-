@@ -3,6 +3,10 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
 }
+.jobpostjpg {
+  width: auto;
+  height: 400px;
+}
 
 .resume {
   // margin-left: 00px;
@@ -18,7 +22,21 @@ body {
   align-items: center;
   margin-bottom: 20px;
 }
-
+.linksli {
+  margin-bottom: -30px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.linkContainer2 {
+  margin-top: 30px;
+  margin-bottom: -20px;
+}
+.linksgandu {
+  margin-bottom: 300px;
+}
+.linkContainer {
+  margin-top: -25px;
+}
 .profile-picture {
   margin-top: 25px;
   margin-left: 72px;
@@ -72,6 +90,7 @@ ul li {
 
 .experience-item {
   margin-bottom: 20px;
+  width: 450px;
 }
 
 .reference-item {
@@ -94,6 +113,9 @@ ul li {
     margin-left: 40px;
   }
 }
+.RightResume {
+  width: 500px;
+}
 .contact {
   width: 300px;
   overflow-wrap: break-word;
@@ -108,25 +130,46 @@ ul li {
   }
 }
 .education {
+  p {
+    margin-left: 40px;
+  }
   width: 300px;
   overflow-wrap: break-word;
   margin-top: 40px;
   li {
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
   }
+}
+.a {
+  position: relative;
+  display: flex;
+  // height: 20px;
+  li {
+    margin-right: 10px;
+  }
+  // height: 100px;
+  // margin-bottom: 10px;
 }
 .expertise {
   width: 300px;
+  padding-bottom: 20px;
   overflow-wrap: break-word;
   li {
-    margin-left: -37px;
-    margin-bottom: 20px;
+    // margin-left: -37px;
+    margin-bottom: 10px;
   }
 }
+.expertise2 {
+  // position: absolute;
+  left: 50%;
+  top: 10%;
+}
 .language {
+  // position: absolute;
+  top: 180%;
   width: 300px;
-  overflow-wrap: break-word;
+  // overflow-wrap: break-word;
   li {
     margin-left: -37px;
 
@@ -134,6 +177,8 @@ ul li {
   }
 }
 .personal-info {
+  min-height: 150px;
+
   padding: 20px;
   h1 {
     font-size: 40px;
@@ -153,8 +198,9 @@ ul li {
 .experience {
   margin-top: 10px;
   padding: 20px;
+  width: 450px;
   h2 {
-    width: 500px;
+    width: 450px;
     border-bottom: 2px solid #323b4c;
     padding-bottom: 5px;
     margin-bottom: 10px;
@@ -164,8 +210,6 @@ ul li {
   padding: 20px;
 
   h2 {
-    width: 500px;
-
     border-bottom: 2px solid #323b4c;
     padding-bottom: 5px;
     margin-bottom: 10px;
@@ -247,8 +291,33 @@ ul li {
   }
 }
 .unique {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.btn4 {
+  margin-left: 350px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 7px;
+  color: white;
+  background-color: #000000;
+  padding: 5px 10px;
+  font-family: Arial, sans-serif;
+  transition: transform 0.2s ease-in-out;
+  transition: 0.4s;
+}
+.btn4:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+.btn4:active {
+  transform: scale(1.1);
+}
+.btn4:active::after {
+  transform: translate(-50%, -50%);
 }
 
 .FilteredSkills {
@@ -258,3 +327,93 @@ ul li {
   color: #fff;
   cursor: pointer;
 }
+
+.imageUpload {
+  // display: flex;
+  margin-top: 10px;
+  p {
+    font-size: 20px;
+  }
+  // border-top: 2px solid gray;
+  // border-bottom: 2px solid gray;
+}
+
+.btn5 {
+  background-color: #a9a9a9;
+  font-family: Arial, sans-serif;
+  margin-right: 10px;
+  // border: 1px solid black;
+  // padding: 0px
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 7px;
+  color: white;
+  // background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-left: 330px;
+  padding: 5px 10px;
+  font-family: Arial, sans-serif;
+  transition: transform 0.2s ease-in-out;
+  transition: 0.4s;
+}
+.underimageflex {
+  display: flex;
+}
+.btn5:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+.stickybutton {
+  padding: 10px 10px;
+  background-color: #ef6c00;
+  color: white;
+  position: fixed;
+  top: 88%;
+  right: 1%;
+  transition: 0.9s;
+}
+.stickybutton:hover {
+  background-color: #ffffff;
+  color: #ef6c00;
+  scale: (1.1);
+}
+.stickybutton:active {
+  scale: (1.01);
+}
+.input {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: rgb(0, 0, 0);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.imageuploadicons {
+  font-size: 20px;
+}
+.Cross {
+  display: flex;
+  cursor: pointer;
+  // display: inline-block;
+  // position: relative;
+  padding-bottom: 10px;
+}
+.cross {
+  margin-top: 3px;
+}
+li {
+  list-style: none;
+}
+.selectedSkill {
+  margin-top: 10px;
+}
+// .EL {
+//   display: flex;
+//   flex-direction: column;
+// }

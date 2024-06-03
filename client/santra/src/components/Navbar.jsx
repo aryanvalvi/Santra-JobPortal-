@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
 // import { useAuth } from "../contextApi/AuthContext";
 import { Link } from "react-router-dom";
+
 const Navbar = () => {
   // const { user, setUser } = useAuth();
   const otherImage = "/logoSantra.png";
@@ -71,6 +72,7 @@ const Navbar = () => {
 
   return (
     <div className="navbarGandus">
+      {console.log("navbar called")}
       <div className="flex1">
         <img
           className="logo"

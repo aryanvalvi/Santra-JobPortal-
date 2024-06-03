@@ -14,6 +14,7 @@ import PostedJob from "./Pages/PostedJob";
 import Resume from "./Pages/Resume";
 import ResumeDetail from "./Pages/ResumeDetail";
 import Experince from "./Pages/Experince";
+import Layout from "./components/Layout";
 const App = () => {
   const [user, setUser] = useState(null);
 
@@ -45,7 +46,8 @@ const App = () => {
       {
         <Router>
           <Routes>
-            <Route path="/" element={<Home></Home>}></Route>
+            <Route path="/" element={<Layout></Layout>}></Route>
+            <Route index element={<Home></Home>}></Route>
             <Route
               path="/jobs"
               element={user ? <Jobs></Jobs> : <Navigate to="/"></Navigate>}
