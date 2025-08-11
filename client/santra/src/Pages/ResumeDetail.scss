@@ -295,6 +295,24 @@ ul li {
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 20px;
+  margin-right: 60px;
+}
+.unique2 {
+  padding: 1px;
+  background-color: rgb(255, 94, 0);
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.unique2:hover {
+  scale: (1.1);
+}
+.unique:active {
+  scale: (1);
+}
+.ExperienceOption {
+  display: flex;
 }
 .btn4 {
   margin-left: 350px;
@@ -337,9 +355,28 @@ ul li {
   // border-top: 2px solid gray;
   // border-bottom: 2px solid gray;
 }
-
+.choosefile {
+  background-color: #bfb4b4;
+  font-family: Arial, sans-serif;
+  margin-right: 10px;
+  // border: 1px solid black;
+  // padding: 0px
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 7px;
+  color: white;
+  // background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-left: 330px;
+  padding: 5px 10px;
+  font-family: Arial, sans-serif;
+  transition: transform 0.2s ease-in-out;
+  transition: 0.4s;
+}
 .btn5 {
-  background-color: #a9a9a9;
+  background-color: rgb(255, 94, 0);
   font-family: Arial, sans-serif;
   margin-right: 10px;
   // border: 1px solid black;

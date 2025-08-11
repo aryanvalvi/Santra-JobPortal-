@@ -75,7 +75,8 @@ const postJob = async (req, res) => {
 };
 const PostedJob = async (req, res) => {
   try {
-    const userId = req.user.id;
+    // const userId = req.user.id;
+    const userId = req.body;
     console.log("this is from postedJob", userId);
     const jobs = await Jobpost.find({ userId });
     if (jobs) {
@@ -87,11 +88,14 @@ const PostedJob = async (req, res) => {
     res.status(500).json({ message: "Not Found The Data", error });
   }
 };
+
 const GetJob = async (req, res) => {
   try {
     const data = await Jobpost.find();
     if (data) {
       res.status(200).json(data);
+
+      // console.log("here the data", gandudata);
     } else {
       res.status(400).json("data is not found");
     }

@@ -8,6 +8,9 @@ const passport = require("passport");
 const session = require("express-session");
 const passportConfig = require("./Passport/passport");
 const bodyParser = require("body-parser");
+const { Client } = require("@elastic/elasticsearch");
+const fs = require("fs");
+const { checkConnection } = require("./controllers/uploadIndexToElastic");
 //expres session
 app.use(
   session({
@@ -46,6 +49,7 @@ const db = () => {
 //Routes
 app.use("/", route);
 
+// checkConnection();
 app.listen(5000, () => {
   db();
   console.log("server is running on port 5000");

@@ -1,11 +1,15 @@
+html {
+  font-size: 16px;
+}
+
 .navElements {
   display: flex;
   justify-content: space-between;
   li {
     font-family: "Inria Sans", sans-serif;
-    font-weight: 700;
+    // font-weight: 700;
     font-style: normal;
-    font-size: 24px;
+    // font-size: 1.1rem;
     font-size: bold;
     margin-right: 20px;
     cursor: pointer;
@@ -27,13 +31,21 @@
   padding-top: 20px;
 }
 .btn {
-  padding: 14px;
+  padding: 10px;
   color: black;
   background-color: #ffe600;
-  font-weight: 900;
+  font-weight: 600;
   font-style: normal;
-  font-size: 23px;
+  font-size: 1.1rem;
   border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.btn:hover {
+  scale: (1.09);
+}
+.btn:active {
+  scale: (1);
 }
 .userImage {
   width: 50px;
@@ -41,13 +53,72 @@
   margin-left: 20px;
 }
 .btn-logOut {
-  padding: 10px;
+  margin-left: 10px;
+  margin-top: 19px;
+  width: 100%;
+  padding: 5px;
   color: black;
   background-color: #ffe600;
-  font-weight: 900;
+  font-weight: 600;
   font-style: normal;
-  font-size: 23px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
 }
-.signInComp {
+.btn-logOut:hover {
+  scale: (1.02);
+}
+.btn-logOut:active {
+  scale: (1);
+}
+.smallLI {
+  width: 100%;
   display: flex;
+  p {
+    margin-top: -2px;
+  }
+  margin-bottom: 14px;
+  transition: 0.2s;
+}
+.smallLI:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+.reactIcon:hover {
+  // fill: #235ea1;
+}
+.userinfo {
+  top: 14.3%;
+  left: 75%;
+  position: absolute;
+  background-color: #ffffff;
+  max-width: 200px;
+  height: 200px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 200px; /* Adjust according to your needs */
+  padding: 10px;
+}
+.userinfo::before {
+  content: "";
+  position: absolute;
+  top: -20px; /* Position above the dropdown */
+  left: 85%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent rgb(255, 255, 255) transparent;
+}
+
+.normalLi {
+  font-weight: bold;
+  margin-bottom: 20px;
+  // letter-spacing: ;
+  font-size: 1.2rem;
+}
+.BigLi {
+  font-size: 1.18rem;
 }

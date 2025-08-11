@@ -11,10 +11,10 @@
   margin-top: 30px;
   display: flex;
 
-  // justify-content: center;
+  justify-content: center;
   // align-items: center;
   color: rgb(255, 255, 255);
-  background-color: #343a40;
+  // background-color: #343a40;
 }
 .jobpostImageContainer {
   margin-top: 0;
@@ -26,12 +26,16 @@
   width: 500px;
   padding: 7px;
   font-size: 18px;
-  border-radius: 10px;
+  // border-radius: 10px;
 }
+
 .salaray {
   display: flex;
 }
 .salaryrange {
+  display: flex;
+}
+.SalaryRange {
   display: flex;
 }
 .postjobinput1 {
@@ -91,7 +95,8 @@
 }
 .postJob {
   h1 {
-    font-size: 20px;
+    font-size: 1.2rem;
+    margin-bottom: -10px;
   }
   padding: 30px;
   display: flex;
@@ -111,3 +116,86 @@
   color: #000000;
   margin-bottom: 30px;
 }
+.minsalary {
+  font-size: 1.2rem;
+
+  font-weight: 700;
+  // margin-left: 20px;
+}
+.maxSalary {
+  font-size: 1.2rem;
+
+  font-weight: 700;
+}
+
+$primary: #ef9638;
+$secondary: #fab31a;
+$white: #fff;
+$gray: #9b9b9b;
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  // width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $gray;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight: 600;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary, $secondary);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
+}
+// <div className="form__group field">
+
+//           </div>
+// className="form__label"

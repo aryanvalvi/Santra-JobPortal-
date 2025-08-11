@@ -1,44 +1,83 @@
 .jobsflexbox {
   display: flex;
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: "Inria Sans", sans-serif;
   font-weight: 300;
   font-style: normal;
+  // background-color: rgb(168, 168, 168);
   // font-size: 24px;
+  margin-top: -30px;
 }
 .SeachHome {
   display: flex;
   justify-content: center;
 }
+.headerJob {
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  border-bottom: 1px solid rgb(192, 191, 191);
+  transition: 0.3s ease-in-out;
+}
+.scroll-up-header {
+  margin-top: 10px;
+  // position: fixed;
+}
+.scroll-up {
+  height: 1000px;
 
+  overflow-y: auto;
+}
 .jobs {
+  // height: 5000px;
   cursor: pointer;
-  width: auto;
+  // width: auto;
   margin-top: 50px;
   margin-left: 50px;
   border: 1px solid white;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 40px;
+  // display: flex;
+  transition: 0.3s ease;
+}
+.JobN {
+  // background-color: #ffe600;
+  border: 1.5px solid rgb(0, 0, 0);
 }
 .selected {
-  background-color: #8d8d8d;
+  background-color: #f7f7f7;
   transform: scale(1.03);
   transition: transform 0.3s ease-in-out;
+  border: 1px solid #ffe600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 .leftJobs {
-  max-height: 800px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   padding-right: 10px;
   scrollbar-width: none;
   margin-left: 30px;
   margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // flex-direction: column;
+  // flex: 1;
+  // width: 600px;
+  flex-wrap: wrap;
+}
+.leftjobFlexNot {
+  display: block;
+}
+.jobs:hover {
+  scale: (1.01);
 }
 .title {
-  font-size: 27px;
-  font-weight: 800;
-  font-style: bold;
+  font-size: 1.5rem;
+  font-weight: 550;
 }
 .jobs:hover {
   .title {
@@ -46,7 +85,7 @@
   }
 }
 .address {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 18px;
 }
 .shift {
@@ -59,15 +98,21 @@
   color: rgb(0, 0, 0);
   margin-right: 5px;
 }
-.SalaryRange {
-  font-size: 20px;
+.SalaryRangee {
+  margin-top: 8px;
+  font-size: 1rem;
   border-radius: 5px;
-  font-weight: 800;
+  font-weight: 500;
   padding: 3px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(194, 194, 194);
+  display: flex;
+  // flex-direction: row;
   display: inline-block;
-  color: rgb(0, 0, 0);
+  color: rgb(49, 49, 49);
   margin-right: 5px;
+}
+.day {
+  margin-top: 5px;
 }
 .SkillRequired {
   font-size: 20px;
@@ -81,6 +126,7 @@
 }
 .Responsibilities {
   margin-left: -3px;
+  margin-top: 10px;
 }
 .jobsflexbox {
   display: flex;
@@ -88,11 +134,19 @@
   justify-content: center;
   // text-align: center;
 }
-.rightBigJob2 {
-  min-width: 500px;
-  border: 1px solid white;
+
+.rightBigJob {
+  // width: 600px;
+  // background-color: aqua;
+  // border: 1px solid black;
+  // border: 1px solid #ffe600;
+  height: auto;
   margin-top: 100px;
   margin-left: 30px;
+}
+.rightBigJob2 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid white;
   padding: 20px;
   border-radius: 4px;
   .address {
@@ -100,6 +154,15 @@
   }
   .SalaryRange {
     margin-top: 10px;
+    background-color: #e4f7e6;
+    display: inline-block;
+    color: #f7f7f7;
+    font-size: 1.2rem;
+    color: rgb(49, 49, 49);
+    font-weight: 500;
+    padding: 3px;
+    border-radius: 5px;
+    margin-bottom: 5px;
   }
   .btn2 {
     margin-top: 5px;
@@ -108,6 +171,7 @@
     font-weight: 800;
     padding: 5px;
     border-radius: 3px;
+    border: 1px solid black;
   }
 }
 .buttonwithBookMark {
@@ -118,10 +182,12 @@
   position: absolute;
   // margin-top: 40px;
   padding: 6px;
-  background-color: rgb(203, 203, 203);
+  // background-color: rgb(203, 203, 203);
 }
 .moreDetail {
-  margin-left: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+  // margin-left: 30px;
   padding: 20px;
 
   border: 1px solid white;
@@ -131,8 +197,13 @@
   h1 {
     font-size: 20px;
   }
+  h2 {
+    font-size: 1.1rem;
+    color: #808080;
+    margin-top: 10px;
+  }
   p {
-    font-size: 20px;
+    font-size: 1.1rem;
   }
   .SkillRequired {
     font-size: 18px;
@@ -147,13 +218,24 @@
 }
 
 .SkillRequired2 {
+  // margin-top: 10px;
+  // border-radius: 3px;
+  // padding: 3px;
+  // display: inline-block;
+  // background-color: azure;
+  // color: black;
+  // font-size: 18px;
+
   margin-top: 10px;
-  border-radius: 3px;
-  padding: 3px;
+  background-color: #e4f7e6;
   display: inline-block;
-  background-color: azure;
-  color: black;
-  font-size: 18px;
+  color: #f7f7f7;
+  font-size: 1.2rem;
+  color: rgb(49, 49, 49);
+  font-weight: 500;
+  padding: 3px;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 .EducationIcon {
   display: flex;

@@ -24,6 +24,8 @@ const Language = [
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 const ResumeDetail = () => {
+  const [showExperience, setShowExperience] = useState(true);
+  const [showReference, setshowReference] = useState(true);
   const [imageUploaded, setImageUploaded] = useState(null);
   const [googleId, setGoogleId] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
@@ -252,9 +254,12 @@ const ResumeDetail = () => {
       return eexperience[key].trim() !== "";
     });
 
-    if (allFieldsFilled) {
-      setExistingData([...existingData, eexperience]);
+    if (!allFieldsFilled) {
       // Clear the input fields after submission
+
+      alert("Please enter a value");
+    } else if (existingData.length <= 4) {
+      setExistingData([...existingData, eexperience]);
       seteExperience({
         date: "",
         company: "",
@@ -262,8 +267,9 @@ const ResumeDetail = () => {
         position: "",
       });
       setAdd(true);
+      setShowExperience(false);
     } else {
-      alert("Please enter a value");
+      alert("You can add at max 4 ");
     }
   };
   const [existingData, setExistingData] = useState([]);
@@ -340,7 +346,9 @@ const ResumeDetail = () => {
     const allFieldsFilled = Object.keys(rreferences).every((key) => {
       return rreferences[key].trim() !== "";
     });
-    if (allFieldsFilled) {
+    if (!allFieldsFilled) {
+      alert("Please enter a value");
+    } else if (existingRefrencedata.length <= 3) {
       setExistingRefrencedata([...existingRefrencedata, rreferences]);
       setrReferences({
         name: "",
@@ -350,8 +358,10 @@ const ResumeDetail = () => {
         email: "",
       });
       setAddref(true);
+
+      setshowReference(false);
     } else {
-      alert("Please enter a value");
+      alert("Limit is 3");
     }
   };
   const [rreferences, setrReferences] = useState({
@@ -539,7 +549,15 @@ const ResumeDetail = () => {
             /> */}
           </div>
           <div className="Experience PersonalInfo">
-            <p className="unique">Experience</p>
+            <div className="ExperienceOption">
+              <p className="unique">Experience</p>
+              <p
+                onClick={() => setShowExperience(!showExperience)}
+                className="unique unique2"
+              >
+                No Expeirence
+              </p>
+            </div>
             <form onSubmit={Handlesubmit}>
               <p>Date</p>
               <input
@@ -591,7 +609,15 @@ const ResumeDetail = () => {
             </form>
           </div>
           <div className="PersonalInfo">
-            <p className="unique">Reference</p>
+            <div className="ExperienceOption">
+              <p className="unique">Reference</p>
+              <p
+                onClick={() => setshowReference(!showReference)}
+                className="unique unique2"
+              >
+                No Reference
+              </p>
+            </div>
             <form onSubmit={HandleReferenceSubmit}>
               <p> Name</p>
               <input
@@ -651,7 +677,7 @@ const ResumeDetail = () => {
             <p>Upload your image here</p>
             <div className="underimageflex">
               <input
-                className="btn5"
+                className="choosefile"
                 type="file"
                 onChange={(e) => setSelectedFile(e.target.files[0])}
                 id=""
@@ -800,69 +826,73 @@ const ResumeDetail = () => {
                 <h2>{Header.post}</h2>
                 <p>{Header.info}</p>
               </div>
-              <div className="experience">
-                <h2>Experience</h2>
-                {Add
-                  ? existingData.map((e, index) => (
-                      <div key={index} className="experience-item">
-                        <h3>{e.date}</h3>
-                        <p>
-                          <strong>
-                            {e.company} | {e.address}
-                          </strong>
-                        </p>
-                        <p>{e.position}</p>
-                      </div>
-                    ))
-                  : experience.map((item, index) => (
-                      <div key={index} className="experience-item">
-                        <h3>{item.date}</h3>
-                        <p>
-                          <strong>
-                            {item.company} | {item.address}
-                          </strong>
-                        </p>
-                        <p>{item.position}</p>
-                      </div>
-                    ))}
-              </div>
+              {showExperience && (
+                <div className="experience">
+                  <h2>Experience</h2>
+                  {Add
+                    ? existingData.map((e, index) => (
+                        <div key={index} className="experience-item">
+                          <h3>{e.date}</h3>
+                          <p>
+                            <strong>
+                              {e.company} | {e.address}
+                            </strong>
+                          </p>
+                          <p>{e.position}</p>
+                        </div>
+                      ))
+                    : experience.map((item, index) => (
+                        <div key={index} className="experience-item">
+                          <h3>{item.date}</h3>
+                          <p>
+                            <strong>
+                              {item.company} | {item.address}
+                            </strong>
+                          </p>
+                          <p>{item.position}</p>
+                        </div>
+                      ))}
+                </div>
+              )}
 
-              <div className="reference">
-                <h2>Reference</h2>
-                {!Addref
-                  ? references.map((item, index) => (
-                      <div key={index} className="reference-item">
-                        <p>
-                          <strong>{item.name}</strong>
-                        </p>
-                        <p>
-                          {item.position}, {item.company}
-                        </p>
-                        <p>
-                          <strong>Phone:</strong> {item.phone}
-                        </p>
-                        <p>
-                          <strong>Email:</strong> {item.email}
-                        </p>
-                      </div>
-                    ))
-                  : existingRefrencedata.map((item, index) => (
-                      <div key={index} className="reference-item">
-                        <p>
-                          <strong>{item.name}</strong>
-                        </p>
-                        <p>
-                          {item.position}, {item.company}
-                        </p>
-                        <p>
-                          <strong>Phone:</strong> {item.phone}
-                        </p>
-                        <p>
-                          <strong>Email:</strong> {item.email}
-                        </p>
-                      </div>
-                    ))}
-              </div>
+              {showReference && (
+                <div className="reference">
+                  <h2>Reference</h2>
+                  {!Addref
+                    ? references.map((item, index) => (
+                        <div key={index} className="reference-item">
+                          <p>
+                            <strong>{item.name}</strong>
+                          </p>
+                          <p>
+                            {item.position}, {item.company}
+                          </p>
+                          <p>
+                            <strong>Phone:</strong> {item.phone}
+                          </p>
+                          <p>
+                            <strong>Email:</strong> {item.email}
+                          </p>
+                        </div>
+                      ))
+                    : existingRefrencedata.map((item, index) => (
+                        <div key={index} className="reference-item">
+                          <p>
+                            <strong>{item.name}</strong>
+                          </p>
+                          <p>
+                            {item.position}, {item.company}
+                          </p>
+                          <p>
+                            <strong>Phone:</strong> {item.phone}
+                          </p>
+                          <p>
+                            <strong>Email:</strong> {item.email}
+                          </p>
+                        </div>
+                      ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

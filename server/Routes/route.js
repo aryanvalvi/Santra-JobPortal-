@@ -13,12 +13,21 @@ const {
   redirectToHome,
 } = require("../controllers/post");
 const { GetImage, UserImage } = require("../controllers/UserImage");
+const {
+  getDataIndex,
+  GetSearch,
+} = require("../controllers/uploadIndexToElastic");
 // const { isAuthenticated, isganduOn } = require("../controllers/googleAuth");
 //Routes
 
 router.post("/api/job/postjob", CheckisAuthenticated, postJob);
-router.get("/getJob", CheckisAuthenticated, GetJob);
-router.get("/postedJob", CheckisAuthenticated, PostedJob);
+router.get("/getJob", GetJob);
+router.get(
+  "/postedJob",
+
+  PostedJob
+);
+// CheckisAuthenticated,
 router.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -73,3 +82,8 @@ router.get("/abcd", async (req, res) => {
 router.get("/get-image", GetImage);
 module.exports = router;
 router.post("/convertword", ConvertToWord);
+
+//elastic
+
+router.get("/lavde", getDataIndex);
+router.get("/search", GetSearch);

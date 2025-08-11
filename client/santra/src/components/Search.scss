@@ -1,5 +1,9 @@
+.SeachHome {
+  margin-top: 20px;
+}
 .searchInput1 {
   width: 600px;
+
   // margin-left: 200px;
   // position: absolute;
   z-index: 1;
@@ -12,19 +16,26 @@
   padding-bottom: 10px;
   padding-top: 10px;
   padding-left: 10px;
+  width: 320px;
+  border: none;
+  outline: none;
 }
 .searchInput2 {
-  margin-top: 2.1px;
-  padding: 8px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   padding-left: 10px;
   position: absolute;
   top: 0;
-  z-index: 1;
-  left: 60%;
+  // z-index: 1;
+  left: 58%;
+  border: none;
+  outline: none;
 }
 .searchBtn {
   z-index: 1;
-
+  // border: none;
+  // outline: none;
+  border: 1px solid rgb(0, 0, 0);
   cursor: pointer;
   position: absolute;
   top: 3px;
@@ -41,4 +52,42 @@
   z-index: 2;
   height: 40px;
   margin-left: 120px;
+}
+.searchResult {
+  z-index: 1;
+  margin-top: 8px;
+  position: absolute;
+  background-color: rgb(235, 235, 235);
+  color: rgb(0, 0, 0);
+  width: 320px;
+  padding: 5px;
+  border-radius: 5px;
+  overflow-y: scroll;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 300px;
+}
+.skillsSearch {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(146, 144, 144);
+  cursor: pointer;
+}
+.skillsSearch:hover {
+  scale: (1.01);
+}
+.MainInput {
+  background-color: #ffffff;
+  width: 580px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.vertical-line {
+  margin-bottom: -5px;
+  width: 1px;
+  height: 20px;
+  background-color: rgb(0, 0, 0);
+  display: inline-block;
 }
